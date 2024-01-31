@@ -1,0 +1,54 @@
+.skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skills {
+    max-width: 68.75rem;
+    margin: auto;
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.skill-header {
+    font-variant: small-caps;
+}
+
+.skill-header {
+    margin-bottom: 1rem;
+}
+
+.skills-wrapper img {
+    padding: 1.25rem;
+}
+
+.skill-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.icon-card {
+    border-radius: 11px;
+    box-shadow: 0 3px 10px #a17a69;
+    margin: 10px;
+    aspect-ratio: 1 / 1;
+    width: 6.875rem;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.icon-card:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .icon-card {
+        width: 5.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .icon-card {
+        width: 4.5rem;
+    }
+}

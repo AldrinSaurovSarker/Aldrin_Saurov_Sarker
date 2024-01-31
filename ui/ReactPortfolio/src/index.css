@@ -1,0 +1,132 @@
+:root {
+	--bg: #e3e4e8;
+	--fg:#242F3F;
+	--primary: #255ff4;
+}
+
+body.dark a {
+    color: #0DCAF0;
+}
+
+body.dark a:hover {
+    color: #0AA1C0;
+}
+
+a.btn {
+    color: #fff !important;
+}
+
+.list-item {
+    margin: 5px;
+}
+
+li {
+    list-style: none;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 60px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    filter: brightness(1.1);
+}
+
+.card:not(:hover) {
+    filter: brightness(0.95);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-content {
+    padding: 1.25rem;
+}
+
+.font-1 {
+    font-family: 'Libre Franklin', cursive;
+}
+
+.font-2 {
+    font-family: 'Rubik Doodle Shadow', cursive;
+}
+
+.font-3 {
+    font-family: 'Arial', sans-serif;
+}
+
+.font-4 {
+    font-family: 'Roboto Slab', serif;
+}
+
+.font-5 {
+    font-family: "Arima Madurai";
+}
+
+.font-6 {
+    font-family: "Rancho";
+}
+
+.font-7 {
+    font-family: "Satisfy";
+}
+
+
+.flicker {
+    animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 1px #000, 0 -2px 1px #000, 0 2px 5px #FF3, 0 -10px 10px #F90, 0 -20px 40px #C33;
+    }
+
+    50% {
+        opacity: 0.8;
+        text-shadow: 0 0 1px #000, 0 -2px 1px #000, 0 2px 5px #FF3, 0 -10px 10px #F90, 0 -20px 40px #C33;
+    }
+}
+
+.line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2px;
+    width: 5%;
+    min-width: 30px;
+    background-color: #666;
+}
+
+.section-title {
+    color: #172B75;
+    font-family: 'Spectral';
+}
+
+body.dark .section-title {
+    color: #da70d6;
+}
+
+section {
+    margin-top: 200px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.smooth {
+    transition: all 0.2s linear;
+}

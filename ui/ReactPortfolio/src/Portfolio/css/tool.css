@@ -1,0 +1,25 @@
+.tool-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tool-list-item {
+    flex-grow: 1;
+    font-family: consolas;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: 1px solid red;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.tool-list-item:hover {
+    cursor: pointer;
+    background-color: red;
+    color: #fff !important;
+    font-weight: bolder;
+}

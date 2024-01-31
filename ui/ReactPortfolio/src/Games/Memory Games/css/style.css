@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Neuton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: "Creepy";
+    src: url("../fonts/Creepy.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Creepy";
+    src: url("../fonts/Creepy.woff2") format("woff2");
+}
+
+.game-body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.memory-game {
+    display: grid;
+    grid-gap: 0px;
+    perspective: 1000px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    cursor: url('/public/images/MemoryGame/wand.png'), auto;
+    margin: 0 auto;
+}
+
+.memory-game.easy {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 600px;
+}
+
+.memory-game.medium {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 700px;
+}
+
+.memory-game.hard {
+    grid-template-columns: repeat(8, 1fr);
+    max-width: 800px;
+}
+
+@media (max-width: 575px) {
+    .memory-game.medium {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .memory-game.hard {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 358px) {
+    .memory-game.hard {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.memory-card {
+    display: flex;
+    text-align: center;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    cursor: url('/public/images/MemoryGame/wand.png'), auto;
+    border-radius: 5px;
+}
+
+.memory-card img {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+}
+
+.memory-card:active {
+    transform: scale(.97);
+    transition: transform .2s;
+}
+
+.front-face,
+.back-face {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.memory-card:hover .front-face {
+    background-color: #3E9EEE;
+}
+
+.front-face:hover {
+    padding: 5px;
+}
+
+.front-face {
+    background-color: #1C7CCC;
+    border: 2px solid white;
+}
+
+.back-face {
+    transform: rotateY(180deg);
+    background-color: #fffafa;
+}
+
+.memory-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.board {
+    background-color: #0000ff;
+}
+
+/* MEDIA Toggle */
+.media i {
+    position: relative;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: url('/public/images/MemoryGame/wand.png'), auto;
+}
+
+.media i:hover {
+    color: lime !important;
+    background: transparent;
+    border-color: lime !important;
+    box-shadow: 0 0 10px lime,
+                0 0 20px lime,
+                0 0 40px lime;
+}
+
+.media i.muted {
+    color: #CA0B00 !important;
+    border-color: #CA0B00 !important;
+    box-shadow: 0 0 10px #CA0B00,
+                0 0 20px #CA0B00,
+                0 0 40px #CA0B00;
+}
+
+.media i.muted::after {
+    position: absolute;
+    content: "/";
+    font-size: 75px;
+    color: #CA0B00;
+    font-weight: 700;
+    left: 8px;
+    top: -22px;
+}
+
+.media i.muted:hover {
+    background-color: #CA0B00;
+    border-color: #CA0B00 !important;
+    color: #fffafa !important;
+}
+
+.exit, .restartPop, .pauseScreen, .gameover {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 280px;
+    width: min(450px, 90%);
+    background-color: #100f4d;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 1000;
+    padding: 75px 0;
+}
+
+.exit h1, .restartPop h1, .pauseScreen h1 {
+    font-size: 50px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.exit h1, .restartPop h1, .pauseScreen h1, .gameover h1 {
+    color: #FF6D00;
+    font-family: "Creepy";
+    font-weight: normal;
+}
+
+.pauseScreen h1 {
+    margin-bottom: 50px;
+}
+
+.pauseScreen span {
+    cursor: url('/public/images/MemoryGame/wand.png'), auto;
+}
+
+.pauseScreen span:hover {
+    background-color: #fafc49;
+}
+
+.pauseScreen span:hover i {
+    color: #100f4d !important;
+}
+
+.exit h6, .restartPop h6 {
+    margin-bottom: 50px;
+}
+
+.memory-card.matched {
+    animation: matched 1s 1 linear;
+}
+
+@keyframes matched {
+    0% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(540deg);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .board {
+        flex-direction: column;
+    }
+
+    .exit, .restartPop {
+        height: 350px;
+    }
+}
+
+@media (min-width: 768px) {
+    .memory-card {
+        margin: 5%;
+        width: 90%;
+        height: 160px;
+    }
+
+    .memory-game.hard .memory-card {
+        margin: 5%;
+        width: 90%;
+        height: 140px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .memory-card {
+        margin: 5%;
+        width: 90%;
+        height: 140px;
+    }
+
+    .memory-game.hard .memory-card {
+        margin: 5%;
+        width: 90%;
+        height: 80px;
+    }
+}
+
+@media (max-width: 575px) {
+    .memory-game.easy .memory-card {
+        margin: 5%;
+        width: 90%;
+        height: 140px;
+    }
+
+    .memory-game.medium .memory-card {
+        margin: 5%;
+        width: 90%;
+        height: 100px;
+    }
+
+    .memory-game.hard .memory-card {
+        margin: 5%;
+        width: 90%;
+        height: 70px;
+    }
+}
+
+@media (max-width: 358px) {
+    .memory-game.hard .memory-card {
+        margin: 5%;
+        width: 90%;
+        height: 60px;
+    }
+}

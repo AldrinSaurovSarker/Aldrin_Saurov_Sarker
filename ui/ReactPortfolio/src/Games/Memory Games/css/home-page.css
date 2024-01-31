@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Neuton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: "Creepy";
+    src: url("../fonts/Creepy.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Creepy";
+    src: url("../fonts/Creepy.woff2") format("woff2");
+}
+
+.memory-game-window {
+    cursor: url('/public/images/MemoryGame/wand.png'), auto;
+    height: 100vh;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.blurred {
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+.pop {
+    width: min(450px, 90%);
+}
+
+.resetStat {
+    visibility: hidden;
+}
+
+.pop,
+.intro,
+.stat,
+.resetStat {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: #100f4d;
+    z-index: 1000;
+}
+
+.memory-game-window h1,
+.pop h1,
+.intro h1,
+.stat h1,
+.resetStat h1 {
+    color: #FF6D00;
+    font-family: "Creepy";
+    font-style: italic;
+}
+
+.resetStat {
+    width: min(500px, 100%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 50px 20px 50px;
+    z-index: 2000;
+}
+
+.pop ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    grid-gap: 10px;
+    justify-content: center;
+}
+
+.pop ul li a {
+    color: #fffafa;
+    transition: transform 0.5s;
+}
+
+.pop a:hover {
+    color: #100f4d !important;
+    background-color: snow;
+}
+
+.pop .btn {
+    width: 165px;
+    transition: transform 0.5s;
+}
+
+.memory-game-window .container {
+    background-image: radial-gradient(#1c7ccc, #100f4d);
+    box-shadow: 0px 5px 20px #41280d;
+}
+
+.memory-game-window .content {
+    background-image: radial-gradient(#1c7ccc, #100f4d);
+    box-shadow: 0px 5px 20px #124d7e;
+}
+
+.memory-game-window i {
+    color: #fff;
+    font-style: italic;
+}
+
+.memory-game-window .group-btn {
+    position: absolute;
+    bottom: 0%;
+}
+
+@media screen and (max-width: 1000px) {
+    .memory-game-window .group-btn {
+        display: flex !important;
+        gap: 0 !important;
+        flex-direction: row !important;
+    }
+
+    .memory-game-window .content h1 {
+        font-size: 50px;
+    }
+
+    .memory-game-window .content span:nth-child(even) {
+        display: none;
+    }
+}

@@ -1,0 +1,27 @@
+.coffee-section {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.coffee-icon {
+    background-color: #f06292;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2vw;
+}
+
+.coffee-text {
+    color: #f06292;
+    margin-top: 20px;
+    font-size: 4vw;
+    font-weight: bold;
+}
+
+.horizontal-line {
+    height: 3px;
+    background-color: #f06292;
+    width: 50%;
+}

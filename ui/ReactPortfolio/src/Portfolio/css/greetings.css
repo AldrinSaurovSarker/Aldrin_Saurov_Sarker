@@ -1,0 +1,111 @@
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+
+    70%, 100% {
+        width: 100%;
+    }
+}
+
+.typing-animation {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #007bff;
+    animation-name: typing;
+    animation-duration: 3s;
+    animation-timing-function: steps(20, end);
+    animation-iteration-count: infinite;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 2px;
+    min-height: 30px;
+    background-color: #666;
+}
+
+.text-animate {
+    color: #00E0EC;
+    animation-name: color-changer;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes color-changer {
+    0% {
+        color: #00E0EC;
+    }
+
+    20% {
+        color: #BC2A8D;
+    }
+
+    40% {
+        color: #0077B5;
+    }
+
+    60% {
+        color: #8a15ad;
+    }
+
+    80% {
+        color: #2916d4;
+    }
+}
+
+body.dark .text-animate {
+    color: #00E0EC;
+    animation-name: color-changer-dark;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes color-changer-dark {
+    0% {
+        color: #FF1F13;
+    }
+
+    20% {
+        color: #43D572;
+    }
+
+    40% {
+        color: #FF884A;
+    }
+
+    60% {
+        color: #75EA5D;
+    }
+
+    80% {
+        color: #D6E92B;
+    }
+}
+
+.email:hover {
+    text-decoration: underline !important;
+}
+
+.greeting-bio {
+    color: #6f6f6f;
+    font-family: 'AR One Sans', sans-serif;
+}
+
+.greeting-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.greeting-image,
+.quote {
+    display: flex;
+    flex-direction: column;
+}
