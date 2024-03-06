@@ -6,6 +6,7 @@ import PauseScreen from './PauseScreen';
 import ExitConfirmation from './ExitConfirmation';
 import RestartPrompt from './RestartPrompt';
 import GameOverDisplay from './GameOverDisplay';
+import { updateUserData } from "../../../CommonComponents/Api"
 
 const allCards = [
     { name: 'bat', src: '/images/MemoryGame/Cards/bat.png', matched: false },
@@ -36,7 +37,7 @@ const matchSound = new Audio('/audios/MemoryGame/match.wav');
 const flipSound = new Audio('/audios/MemoryGame/flip.wav');
 const victorySound = new Audio('/audios/MemoryGame/victory.wav');
 
-export default function Game({difficulty, totalTilesPair}) {
+export default function Game({ difficulty, totalTilesPair }) {
     const getRandomCards = (numCards) => {
         const shuffledCards = [...allCards].sort(() => 0.5 - Math.random());
         return shuffledCards.slice(0, numCards);
@@ -49,6 +50,8 @@ export default function Game({difficulty, totalTilesPair}) {
     const [secondCard, setSecondCard] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
     const [totalFlips, setTotalFlips] = useState(0);
+    const [totalMatchedFlips, setTotalMatchedFlips] = useState(0);
+    const [totalWrongFlips, setTotalWrongFlips] = useState(0);
     const [tilesLeft, setTilesLeft] = useState(totalTilesPair * 2);
     const [musicMuted, setMusicMuted] = useState(false);
     const [soundMuted, setSoundMuted] = useState(false);
@@ -69,18 +72,17 @@ export default function Game({difficulty, totalTilesPair}) {
     }
 
     const initializeCards = () => {
+        setGameStarted(false);
+        unflipCard();
         shuffleCards();
         setTotalFlips(0);
     };
 
     const shuffleCards = () => {
-        unflipCard();
-        setGameStarted(false);
         let shuffledCards = [...cardImages, ...cardImages]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: Math.random() }));
         setCards(shuffledCards);
-        setTotalFlips(0);
     };
 
     const startGame = () => {
@@ -99,7 +101,6 @@ export default function Game({difficulty, totalTilesPair}) {
 
         flipSoundPlay();
         firstCard ? setSecondCard(card) : setFirstCard(card);
-        setTotalFlips(totalFlips => totalFlips + 1);
     }
 
     const unflipCard = () => {
@@ -111,10 +112,13 @@ export default function Game({difficulty, totalTilesPair}) {
     const checkForMatch = () => {
         if (!firstCard || !secondCard) return;
         setBlocked(true);
+        setTotalFlips(totalFlips => totalFlips + 1);
 
         if (firstCard.name === secondCard.name) {
             matchSoundPlay();
             setTilesLeft(tilesLeft => tilesLeft - 2);
+            setTotalMatchedFlips(totalMatchedFlips + 1)
+
             setCards(prevCards => {
                 return prevCards.map(card => {
                     if (card.name === firstCard.name) {
@@ -126,17 +130,21 @@ export default function Game({difficulty, totalTilesPair}) {
             });
             unflipCard();
         } else {
+            setTotalWrongFlips(totalWrongFlips + 1)
             setTimeout(() => unflipCard(), 1000);
         }
     };
 
     const checkForGameOver = () => {
         if (tilesLeft === 0) {
-            pauseGame('gameover');
-            victorySoundPlay();
+            pauseGame('gameover')
+            victorySoundPlay()
+            setGameStarted(false)
+            updateStat(true)
             return;
         }
     }
+
 
     const pauseGame = (event) => {
         blur();
@@ -158,12 +166,39 @@ export default function Game({difficulty, totalTilesPair}) {
         }
     };
 
-    const exitGame = () => {
-        navigate('/games/memory-game/play');
+    const exitGame = async () => {
+        if (gameStarted) {
+            updateStat(false)
+        }
+        navigate('/games/memory-game/play')
     };
 
     const restartGame = () => {
-        window.location.reload();
+        if (gameStarted) {
+            updateStat(false)
+        }
+        window.location.reload()
+    }
+
+    const updateStat = async (flag) => {
+        const userId = JSON.parse(localStorage.getItem('user'))
+
+        if (!userId)
+            return
+
+        try {
+            await updateUserData(
+                userId,
+                difficulty,
+                timeElapsed,
+                totalFlips,
+                totalMatchedFlips,
+                totalWrongFlips,
+                flag
+            )
+        } catch (error) {
+            console.error('Error updating user data:', error)
+        }
     }
 
     const toggleMusic = () => {
@@ -230,7 +265,6 @@ export default function Game({difficulty, totalTilesPair}) {
                 setTimeElapsed((prevTime) => prevTime + 1);
             }, 1000);
         }
-
         return () => clearInterval(interval);
     }, [gameStarted, gamePaused]);
 

@@ -8,7 +8,7 @@ const Loader = () => {
 
     useEffect(() => {
         const tips = [
-            'The game will save your stats locally, via localStorage.',
+            'You can save your data by signing with your Google account.',
             'Find out all the identical pairs to win.',
             'The HARD mode is a real memory booster',
             'Position of each card is randomized every time you play.',

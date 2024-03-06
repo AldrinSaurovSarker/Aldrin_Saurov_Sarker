@@ -28,10 +28,6 @@
     width: min(450px, 90%);
 }
 
-.resetStat {
-    visibility: hidden;
-}
-
 .pop,
 .intro,
 .stat,
