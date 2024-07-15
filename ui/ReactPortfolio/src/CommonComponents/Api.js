@@ -53,16 +53,16 @@ export const getExtraData = async () => {
     }
 };
 
-export const getOnlineJudgeData = async () => {
-    try {
-        const response = await fetch("http://localhost:5038/api/Portfolio/GetOnlineJudgeData");
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error fetching online judge data:", error);
-        return [];
-    }
-};
+// export const getOnlineJudgeData = async () => {
+//     try {
+//         const response = await fetch("http://localhost:5038/api/Portfolio/GetOnlineJudgeData");
+//         const data = await response.json();
+//         return data;
+//     } catch (error) {
+//         console.error("Error fetching online judge data:", error);
+//         return [];
+//     }
+// };
 
 export const getProfileData = async () => {
     try {

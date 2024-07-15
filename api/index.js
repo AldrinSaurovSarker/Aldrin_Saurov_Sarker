@@ -30,7 +30,6 @@ async function connectToMongoDB() {
         memory_game_database = client.db(MEMORY_GAME_DATABASE_NAME);
         console.log("Connection to MongoDB successful");
     } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
         process.exit(1); // Exit the application if the connection fails
     }
 }
@@ -48,7 +47,6 @@ app.get('/api/Portfolio/GetCertificateData', async (request, response) => {
         const data = await portfolio_database.collection("Certificate").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -58,7 +56,6 @@ app.get('/api/Portfolio/GetContributionData', async (request, response) => {
         const data = await portfolio_database.collection("Contribution").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -68,7 +65,6 @@ app.get('/api/Portfolio/GetEducationData', async (request, response) => {
         const data = await portfolio_database.collection("Education").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -78,7 +74,6 @@ app.get('/api/Portfolio/GetExperienceData', async (request, response) => {
         const data = await portfolio_database.collection("Experience").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -88,20 +83,19 @@ app.get('/api/Portfolio/GetExtraData', async (request, response) => {
         const data = await portfolio_database.collection("Extra").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
 
-app.get('/api/Portfolio/GetOnlineJudgeData', async (request, response) => {
-    try {
-        const data = await portfolio_database.collection("OnlineJudge").find({}).toArray();
-        response.json(data);
-    } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
-        response.status(500).json({ error: "Internal Server Error" });
-    }
-});
+// app.get('/api/Portfolio/GetOnlineJudgeData', async (request, response) => {
+//     try {
+//         const data = await portfolio_database.collection("OnlineJudge").find({}).toArray();
+//         response.json(data);
+//     } catch (error) {
+//         console.error("Error fetching data from MongoDB:", error);
+//         response.status(500).json({ error: "Internal Server Error" });
+//     }
+// });
 
 app.get('/api/Portfolio/GetProfileData', async (request, response) => {
     try {
@@ -112,7 +106,6 @@ app.get('/api/Portfolio/GetProfileData', async (request, response) => {
             response.status(404).json({ message: "Profile data not found" });
         }
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -122,7 +115,6 @@ app.get('/api/Portfolio/GetProjectData', async (request, response) => {
         const data = await portfolio_database.collection("Project").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -132,7 +124,6 @@ app.get('/api/Portfolio/GetResearchData', async (request, response) => {
         const data = await portfolio_database.collection("Research").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -142,7 +133,6 @@ app.get('/api/Portfolio/GetSectionData', async (request, response) => {
         const data = await portfolio_database.collection("Section").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -152,7 +142,6 @@ app.get('/api/Portfolio/GetSkillData', async (request, response) => {
         const data = await portfolio_database.collection("Skill").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -162,7 +151,6 @@ app.get('/api/Portfolio/GetSocialMediaData', async (request, response) => {
         const data = await portfolio_database.collection("SocialMedia").find({}).toArray();
         response.json(data);
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -172,10 +160,8 @@ app.get('/api/MemoryGame/GetUserData/:email', async (request, response) => {
 
     try {
         const data = await memory_game_database.collection("Score").find({ userId: email }).toArray();
-        console.log(data)
         response.json(data)
     } catch (error) {
-        console.error("Error fetching data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -185,10 +171,8 @@ app.delete('/api/MemoryGame/DeleteUserData/:email', async (request, response) =>
 
     try {
         const result = await memory_game_database.collection("Score").deleteMany({ userId: email });
-        console.log(`${result.deletedCount} document(s) deleted`);
         response.json({ message: `${result.deletedCount} document(s) deleted` });
     } catch (error) {
-        console.error("Error deleting data from MongoDB:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -201,54 +185,36 @@ app.post('/api/MemoryGame/UpdateUserData', async (request, response) => {
         const user = await scoreCollection.findOne({ userId: userId, difficulty: difficulty });
 
         if (user) {
-            let bestTime = user.bestTime;
-            let lowestFlips = user.lowestFlips
+            if (gameFinished) {
+                user.bestTime = user.bestTime ? Math.min(user.bestTime, currentTime) : currentTime;
+                user.lowestFlips = user.lowestFlips ? Math.min(user.lowestFlips, totalFlips) : totalFlips;
+            }            
 
-            if (gameFinished === true) {
-                if (bestTime) {
-                    bestTime = user.bestTime && currentTime < user.bestTime ? currentTime : user.bestTime
-                } else {
-                    bestTime = currentTime
-                }
+            user.totalFlips += totalFlips;
+            user.totalMatchedFlips = (user.totalMatchedFlips ?? 0) + totalMatchedFlips;
+            user.totalWrongFlips = (user.totalWrongFlips ?? 0) + totalWrongFlips;
 
-                if (lowestFlips) {
-                    lowestFlips = user.lowestFlips && totalFlips < user.lowestFlips ? totalFlips : user.lowestFlips
-                } else {
-                    lowestFlips = totalFlips
-                }
-            }
-
-            const updatedTotalFlips = user.totalFlips + totalFlips;
-            const updatedMatchedFlips = (user.totalMatchedFlips ?? 0) + totalMatchedFlips;
-            const updatedWrongFlips = (user.totalWrongFlips ?? 0) + totalWrongFlips;
-
-            let updatedCompletedMatches = user.totalCompletedMatches;
-            let updatedAbandonedMatches = user.totalAbandonedMatches;
-
-            if (gameFinished === true) {
-                updatedCompletedMatches += 1;
+            if (gameFinished) {
+                user.totalCompletedMatches += 1;
             } else {
-                updatedAbandonedMatches += 1;
-            }
+                user.totalAbandonedMatches += 1;
+            }            
 
             await scoreCollection.updateOne({ userId: userId },
                 {
                     $set: {
                         difficulty: difficulty,
-                        bestTime: bestTime,
+                        bestTime: user.bestTime,
                         totalMatches: user.totalMatches + 1,
-                        totalCompletedMatches: updatedCompletedMatches,
-                        totalAbandonedMatches: updatedAbandonedMatches,
-                        totalFlips: updatedTotalFlips,
-                        totalMatchedFlips: updatedMatchedFlips,
-                        totalWrongFlips: updatedWrongFlips,
-                        lowestFlips: lowestFlips
+                        totalCompletedMatches: user.totalCompletedMatches,
+                        totalAbandonedMatches: user.totalAbandonedMatches,
+                        totalFlips: user.totalFlips,
+                        totalMatchedFlips: user.totalMatchedFlips,
+                        totalWrongFlips: user.totalWrongFlips,
+                        lowestFlips: user.lowestFlips
                     }
                 }
             );
-
-            const updatedUser = await scoreCollection.findOne({ userId: userId });
-            response.json(updatedUser);
         } else {
             let bestTime
             let lowestFlips
@@ -275,13 +241,12 @@ app.post('/api/MemoryGame/UpdateUserData', async (request, response) => {
                 totalFlips: totalFlips,
                 totalMatchedFlips: totalMatchedFlips,
                 totalWrongFlips: totalWrongFlips,
-                lowestFlips: totalFlips
+                lowestFlips: lowestFlips
             };
             await scoreCollection.insertOne(newUser);
             response.json(newUser);
         }
     } catch (error) {
-        console.error("Error updating user data:", error);
         response.status(500).json({ error: "Internal Server Error" });
     }
 });

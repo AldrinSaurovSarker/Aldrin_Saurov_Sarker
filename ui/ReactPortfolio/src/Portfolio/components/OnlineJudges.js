@@ -37,12 +37,12 @@ export default function OnlineJudges() {
     const [codeforcesRating, setCodeforcesRating] = useState('---');
 
     useEffect(() => {
-        fetch("/api/leetcode")
-            .then((res) => res.json())
-            .then((data) => {
-                setLeetcodeSolvedCount(data.solvedCount);
-                setLeetcodeRating(data.rating);
-            });
+        // fetch("/api/leetcode")
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //         setLeetcodeSolvedCount(data.solvedCount);
+        //         setLeetcodeRating(data.rating);
+        //     });
 
         fetch("/api/codeforces")
             .then((res) => res.json())
