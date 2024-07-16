@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import SingleCard from './SingleCard';
-import PauseScreen from './PauseScreen';
-import ExitConfirmation from './ExitConfirmation';
-import RestartPrompt from './RestartPrompt';
-import GameOverDisplay from './GameOverDisplay';
-import { updateUserData } from "../../../CommonComponents/Api"
+import SingleCard from './SingleCard'
+import PauseScreen from './PauseScreen'
+import ExitConfirmation from './ExitConfirmation'
+import RestartPrompt from './RestartPrompt'
+import GameOverDisplay from './GameOverDisplay'
+import { updateUserData } from './Api'
 
 const allCards = [
     { name: 'bat', src: '/images/MemoryGame/Cards/bat.png', matched: false },

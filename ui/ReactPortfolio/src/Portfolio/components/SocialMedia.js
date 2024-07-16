@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { getSocialMediaData } from '../../CommonComponents/Api';
-import SocialLink from "./SocialLink";
+import { useState, useEffect } from 'react'
+import { getSocialMediaData } from './Api'
+import SocialLink from './SocialLink'
 
 function SocialMedia() {
     const [socialMediaData, setSocialMediaData] = useState([]);

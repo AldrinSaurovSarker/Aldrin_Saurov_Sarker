@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getExtraData } from '../../CommonComponents/Api';
-import SectionTitle from "./SectionTitle";
-import UseDarkMode from "./UseDarkMode";
+import { useState, useEffect } from 'react'
+import { getExtraData } from './Api'
+import SectionTitle from './SectionTitle'
+import UseDarkMode from './UseDarkMode'
 
 export default function Extra() {
     const [extraData, setExtraData] = useState([]);

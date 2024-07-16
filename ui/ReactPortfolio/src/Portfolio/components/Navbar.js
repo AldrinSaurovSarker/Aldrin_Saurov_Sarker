@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { getSectionData } from '../../CommonComponents/Api';
+import React, { useState, useEffect } from 'react'
+import { getSectionData } from './Api'
 
 const Navbar = () => {
     const [activeNavItem, setActiveNavItem] = useState('intro');

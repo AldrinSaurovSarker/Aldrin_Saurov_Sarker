@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { getProjectData } from '../../CommonComponents/Api';
-import { PROJECT_IMAGE_DIR } from "../../CommonComponents/MediaRoute";
-import SectionTitle from "./SectionTitle";
-import UseDarkMode from "./UseDarkMode";
+import { getProjectData } from './Api'
+import { PROJECT_IMAGE_DIR } from '../../CommonComponents/Constants'
+import SectionTitle from './SectionTitle'
+import UseDarkMode from './UseDarkMode'
 
 export default function Projects() {
     const [projectData, setProjectData] = useState([]);

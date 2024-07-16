@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getProfileData } from '../../CommonComponents/Api';
-import SocialMedia from '../components/SocialMedia';
-import UseDarkMode from "./UseDarkMode";
+import { useState, useEffect } from 'react'
+import { getProfileData } from './Api'
+import SocialMedia from '../components/SocialMedia'
+import UseDarkMode from './UseDarkMode'
 
 export default function Greetings() {
 	const [profile, setProfile] = useState(null);

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getSkillData } from '../../CommonComponents/Api';
-import SectionTitle from "./SectionTitle";
-import UseDarkMode from "./UseDarkMode";
+import { useState, useEffect } from 'react'
+import { getSkillData } from './Api'
+import SectionTitle from './SectionTitle'
+import UseDarkMode from './UseDarkMode'
 
 function SkillItem({ logo, name }) {
     return (

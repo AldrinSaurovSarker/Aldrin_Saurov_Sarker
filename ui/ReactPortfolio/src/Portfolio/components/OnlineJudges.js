@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import SectionTitle from "./SectionTitle";
+import { useEffect, useState } from 'react'
+import SectionTitle from './SectionTitle'
 
 const ProblemCard = ({ logoSrc, solved, rating, profileLink }) => (
     <div className="col-xl-3 col-lg-4 col-md-6 col-12 mb-4">

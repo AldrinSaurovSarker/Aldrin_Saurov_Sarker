@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { getEducationData } from '../../CommonComponents/Api'
-import { EDUCATION_IMAGE_DIR } from "../../CommonComponents/MediaRoute"
+import { getEducationData } from './Api'
+import { EDUCATION_IMAGE_DIR } from '../../CommonComponents/Constants'
 import SectionTitle from './SectionTitle'
-import UseDarkMode from "./UseDarkMode"
+import UseDarkMode from './UseDarkMode'
 
 const EducationalDegree = ({ logo, institute, degree, duration, result, link, isDarkMode }) => (
     <li className="education-item py-3 d-grid d-md-flex w-100">

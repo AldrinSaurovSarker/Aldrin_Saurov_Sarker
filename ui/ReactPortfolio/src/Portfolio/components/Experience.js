@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getExperienceData } from '../../CommonComponents/Api';
-import SectionTitle from './SectionTitle';
-import UseDarkMode from "./UseDarkMode";
+import { useState, useEffect } from 'react'
+import { getExperienceData } from './Api'
+import SectionTitle from './SectionTitle'
+import UseDarkMode from "./UseDarkMode"
 
 export default function Experience() {
     const [experienceData, setExperienceData] = useState([]);

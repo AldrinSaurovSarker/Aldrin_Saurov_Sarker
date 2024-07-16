@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getContributionData } from '../../CommonComponents/Api';
-import { CONTRIB_IMAGE_DIR } from "../../CommonComponents/MediaRoute";
-import SectionTitle from './SectionTitle';
+import { useState, useEffect } from 'react'
+import { getContributionData } from './Api'
+import { CONTRIB_IMAGE_DIR } from '../../CommonComponents/Constants'
+import SectionTitle from './SectionTitle'
 
 const ContributionCard = ({ logoSrc, title, organizer, link, pdfUrl }) => {
     const downloadPdf = () => {

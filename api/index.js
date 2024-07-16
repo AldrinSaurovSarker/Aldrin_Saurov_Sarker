@@ -42,7 +42,7 @@ connectToMongoDB().then(() => {
 });
 
 // APIs for MongoDB
-app.get('/api/Portfolio/GetCertificateData', async (request, response) => {
+app.get('/api/portfolio/get-certificate-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Certificate").find({}).toArray();
         response.json(data);
@@ -51,7 +51,7 @@ app.get('/api/Portfolio/GetCertificateData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetContributionData', async (request, response) => {
+app.get('/api/portfolio/get-contribution-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Contribution").find({}).toArray();
         response.json(data);
@@ -60,7 +60,7 @@ app.get('/api/Portfolio/GetContributionData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetEducationData', async (request, response) => {
+app.get('/api/portfolio/get-education-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Education").find({}).toArray();
         response.json(data);
@@ -69,7 +69,7 @@ app.get('/api/Portfolio/GetEducationData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetExperienceData', async (request, response) => {
+app.get('/api/portfolio/get-experience-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Experience").find({}).toArray();
         response.json(data);
@@ -78,7 +78,7 @@ app.get('/api/Portfolio/GetExperienceData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetExtraData', async (request, response) => {
+app.get('/api/portfolio/get-extra-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Extra").find({}).toArray();
         response.json(data);
@@ -97,7 +97,7 @@ app.get('/api/Portfolio/GetExtraData', async (request, response) => {
 //     }
 // });
 
-app.get('/api/Portfolio/GetProfileData', async (request, response) => {
+app.get('/api/portfolio/get-profile-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Profile").findOne({});
         if (data) {
@@ -110,7 +110,7 @@ app.get('/api/Portfolio/GetProfileData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetProjectData', async (request, response) => {
+app.get('/api/portfolio/get-project-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Project").find({}).toArray();
         response.json(data);
@@ -119,7 +119,7 @@ app.get('/api/Portfolio/GetProjectData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetResearchData', async (request, response) => {
+app.get('/api/portfolio/get-research-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Research").find({}).toArray();
         response.json(data);
@@ -128,7 +128,7 @@ app.get('/api/Portfolio/GetResearchData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetSectionData', async (request, response) => {
+app.get('/api/portfolio/get-section-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Section").find({}).toArray();
         response.json(data);
@@ -137,7 +137,7 @@ app.get('/api/Portfolio/GetSectionData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetSkillData', async (request, response) => {
+app.get('/api/portfolio/get-skill-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("Skill").find({}).toArray();
         response.json(data);
@@ -146,7 +146,7 @@ app.get('/api/Portfolio/GetSkillData', async (request, response) => {
     }
 });
 
-app.get('/api/Portfolio/GetSocialMediaData', async (request, response) => {
+app.get('/api/portfolio/get-social-media-data', async (request, response) => {
     try {
         const data = await portfolio_database.collection("SocialMedia").find({}).toArray();
         response.json(data);
@@ -155,7 +155,7 @@ app.get('/api/Portfolio/GetSocialMediaData', async (request, response) => {
     }
 });
 
-app.get('/api/MemoryGame/GetUserData/:email', async (request, response) => {
+app.get('/api/memory-game/get-user-data/:email', async (request, response) => {
     const email = request.params.email;
 
     try {
@@ -166,7 +166,7 @@ app.get('/api/MemoryGame/GetUserData/:email', async (request, response) => {
     }
 });
 
-app.delete('/api/MemoryGame/DeleteUserData/:email', async (request, response) => {
+app.delete('/api/memory-game/delete-user-data/:email', async (request, response) => {
     const email = request.params.email;
 
     try {
@@ -177,7 +177,7 @@ app.delete('/api/MemoryGame/DeleteUserData/:email', async (request, response) =>
     }
 });
 
-app.post('/api/MemoryGame/UpdateUserData', async (request, response) => {
+app.post('/api/memory-game/update-user-data', async (request, response) => {
     const { userId, difficulty, currentTime, totalFlips, totalMatchedFlips, totalWrongFlips, gameFinished } = request.body;
 
     try {

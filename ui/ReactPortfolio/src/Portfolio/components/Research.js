@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getResearchData } from '../../CommonComponents/Api';
-import SectionTitle from "./SectionTitle";
-import UseDarkMode from "./UseDarkMode";
+import { useState, useEffect } from 'react'
+import { getResearchData } from './Api'
+import SectionTitle from './SectionTitle'
+import UseDarkMode from './UseDarkMode'
 
 export default function Research() {
     const [researchData, setResearchData] = useState([]);

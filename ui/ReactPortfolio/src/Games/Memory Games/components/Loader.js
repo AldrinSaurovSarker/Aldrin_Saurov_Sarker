@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../css/loader.css';
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import '../css/loader.css'
 
 const Loader = () => {
     const [tip, setTip] = useState('');

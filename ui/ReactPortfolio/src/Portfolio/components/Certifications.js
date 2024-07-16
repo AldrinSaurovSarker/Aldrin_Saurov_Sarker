@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getCertificateData } from '../../CommonComponents/Api';
-import SectionTitle from "./SectionTitle";
-import UseDarkMode from "./UseDarkMode";
+import { useState, useEffect } from 'react'
+import { getCertificateData } from './Api'
+import SectionTitle from "./SectionTitle"
+import UseDarkMode from "./UseDarkMode"
 
 export default function Certifications() {
     const [certificateData, setCertificateData] = useState([]);

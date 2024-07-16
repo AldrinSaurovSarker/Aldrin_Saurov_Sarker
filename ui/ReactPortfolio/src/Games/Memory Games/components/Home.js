@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import Star from './Star';
-import { getUserData, deleteUserData } from '../../../CommonComponents/Api';
-import GoogleAuth from '../../../CommonComponents/GoogleAuth';
+import { useState, useEffect } from 'react'
+import Star from './Star'
+import { getUserData, deleteUserData } from './Api'
+import GoogleAuth from '../../../CommonComponents/GoogleAuth'
 
-const clickSound = new Audio('/audios/MemoryGame/flip.wav');
+const clickSound = new Audio('/audios/MemoryGame/flip.wav')
 
 export default function Home() {
     const [activeTab, setActiveTab] = useState('All');
@@ -311,7 +311,7 @@ export default function Home() {
                         </div>
                     </>) : (<>
                         <div className="text-center text-info display-5 text-uppercase font-4 mt-5">
-                            <p>Sign in to see statistics</p>
+                            <p style={{ marginTop: '50%' }}>Sign in to see statistics</p>
                         </div>
 
                         <div className="d-grid justify-content-center stat-btn-grp mt-5">
@@ -358,7 +358,7 @@ export default function Home() {
                         </div>
                     </>) : (<>
                         <div className="text-center text-info display-5 text-uppercase font-4 mt-5">
-                            <p>Sign in to see statistics</p>
+                            <p style={{ marginTop: '50%' }}>Sign in to see statistics</p>
                         </div>
 
                         <div className="d-grid justify-content-center stat-btn-grp mt-5">
@@ -405,7 +405,7 @@ export default function Home() {
                         </div>
                     </>) : (<>
                         <div className="text-center text-info display-5 text-uppercase font-4 mt-5">
-                            <p>Sign in to see statistics</p>
+                            <p style={{ marginTop: '50%' }}>Sign in to see statistics</p>
                         </div>
 
                         <div className="d-grid justify-content-center stat-btn-grp mt-5">
@@ -452,7 +452,7 @@ export default function Home() {
                         </div>
                     </>) : (<>
                         <div className="text-center text-info display-5 text-uppercase font-4 mt-5">
-                            <p>Sign in to see statistics</p>
+                            <p style={{ marginTop: '50%' }}>Sign in to see statistics</p>
                         </div>
 
                         <div className="d-grid justify-content-center stat-btn-grp mt-5">
